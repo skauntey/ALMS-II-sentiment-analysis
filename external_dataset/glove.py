@@ -51,4 +51,4 @@ def embedding_GloveDataset(glove_path, word_index):
                 embedding_matrix[i] = embedding_vector
 
     print ('Glove data has been embedded.')
-    return embedding_index
+    return embedding_matrix, embedding_index
