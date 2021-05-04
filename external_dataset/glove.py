@@ -21,9 +21,10 @@ def download_GloveDataset(url):
         if afile.split ( '.' )[0] == 'glove':
             pass
         else:
-            !kaggle dataset download 'url - p (os.getcwd ()) + "/glove_data/") --unzip
+            kaggle.api.authenticate()
+            kaggle.api.dataset_download_files('danielwillgeorge/glove6b100dtxt', path= str(os.getcwd())+"/glove_data/", force = True, unzip=True)
 
-            print ( 'File already exists!')
+        print ( 'File already exists!')
 
     glove_path = os.path.join(os.getcwd(), 'glove_data', str(os.listdir('glove_data')[0]))
     return glove_path
