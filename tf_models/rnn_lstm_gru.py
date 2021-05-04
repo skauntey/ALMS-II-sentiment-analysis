@@ -75,10 +75,10 @@ def bi_directional_rnn_lstm_glove(vocabulary_size, embedding_dim, max_length, em
 
     model = tf.keras.Sequential ([
     tf.keras.layers.Embedding (vocabulary_size, embedding_dim, input_length=max_length, weights=[embedding_matrix], trainable=False),
-    tf.keras.layers.SpatialDropout1D(0.2),
-    tf.keras.layers.Bidirectional(tf.keras.layers.LSTM (32, return_sequences=True)),
-    tf.keras.layers.Bidirectional(tf.keras.layers.LSTM (32)),
-    tf.keras.layers.Dense (32, activation='relu'),
+    tf.keras.layers.SpatialDropout1D(0.1),
+    tf.keras.layers.Bidirectional(tf.keras.layers.LSTM (16, return_sequences=True)),
+    tf.keras.layers.Bidirectional(tf.keras.layers.LSTM (16)),
+    tf.keras.layers.Dense (16, activation='relu'),
     tf.keras.layers.Dense (5, activation='sigmoid')
     ])
     return model
