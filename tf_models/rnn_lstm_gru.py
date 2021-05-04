@@ -12,7 +12,7 @@ def simple_rnn(vocabulary_size, embedding_dim, max_length):
         ])
     return model
 
-def unidirectional_LSTM(vocabulary_size, embedding_dim, max_length):
+def uni_directional_LSTM(vocabulary_size, embedding_dim, max_length):
     model = tf.keras.Sequential([
         tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length),
         tf.keras.layers.LSTM (64, return_sequences=False),
@@ -21,7 +21,7 @@ def unidirectional_LSTM(vocabulary_size, embedding_dim, max_length):
         ])
     return model
 
-def unidirectional_LSTM(vocabulary_size, embedding_dim, max_length):
+def uni_directional_GRU(vocabulary_size, embedding_dim, max_length):
     model = tf.keras.Sequential([
         tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length),
         tf.keras.layers.GRU (64, return_sequences=False),
@@ -53,7 +53,7 @@ def simple_rnn_glove(vocabulary_size, embedding_dim, max_length, embedding_matri
     ])
     return model
 
-def unidirectional_LSTM(vocabulary_size, embedding_dim, max_length, embedding_matrix):
+def uni_directional_LSTM_glove(vocabulary_size, embedding_dim, max_length, embedding_matrix):
     model = tf.keras.Sequential([
         tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length, weights=[embedding_matrix], trainable=False),
         tf.keras.layers.LSTM (64, return_sequences=False),
@@ -62,7 +62,7 @@ def unidirectional_LSTM(vocabulary_size, embedding_dim, max_length, embedding_ma
         ])
     return model
 
-def unidirectional_LSTM(vocabulary_size, embedding_dim, max_length, embedding_matrix):
+def uni_directional_GRU_glove(vocabulary_size, embedding_dim, max_length, embedding_matrix):
     model = tf.keras.Sequential([
         tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length, weights=[embedding_matrix], trainable=False),
         tf.keras.layers.GRU (64, return_sequences=False),
