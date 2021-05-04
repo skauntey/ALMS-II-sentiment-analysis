@@ -7,10 +7,10 @@ def simple_rnn(vocabulary_size, embedding_dim, max_length):
     model = tf.keras.Sequential([
         tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length),
         tf.keras.layers.Flatten(),
-        tf.keras.layers.Dense(128, activation="relu"),
-        tf.keras.layers.Dropout(0.4),
+        #tf.keras.layers.Dense(128, activation="relu"),
+        #tf.keras.layers.Dropout(0.4),
         tf.keras.layers.Dense(32, activation="relu"),
-        tf.keras.layers.Dropout(0.2),
+        #tf.keras.layers.Dropout(0.2),
         tf.keras.layers.Dense(5, activation='sigmoid')
         ])
     return model
