@@ -7,10 +7,25 @@ def simple_rnn(vocabulary_size, embedding_dim, max_length):
     model = tf.keras.Sequential([
         tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length),
         tf.keras.layers.Flatten(),
-        #tf.keras.layers.Dense(128, activation="relu"),
-        #tf.keras.layers.Dropout(0.4),
-        tf.keras.layers.Dense(32, activation="relu"),
-        #tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(64, activation="relu"),
+        tf.keras.layers.Dense(5, activation='sigmoid')
+        ])
+    return model
+
+def unidirectional_LSTM(vocabulary_size, embedding_dim, max_length):
+    model = tf.keras.Sequential([
+        tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length),
+        tf.keras.layers.LSTM (64, return_sequences=False),
+        tf.keras.layers.Dense(64, activation="relu"),
+        tf.keras.layers.Dense(5, activation='sigmoid')
+        ])
+    return model
+
+def unidirectional_LSTM(vocabulary_size, embedding_dim, max_length):
+    model = tf.keras.Sequential([
+        tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length),
+        tf.keras.layers.GRU (64, return_sequences=False),
+        tf.keras.layers.Dense(64, activation="relu"),
         tf.keras.layers.Dense(5, activation='sigmoid')
         ])
     return model
@@ -20,12 +35,9 @@ def bi_directional_rnn_lstm(vocabulary_size, embedding_dim, max_length):
     model = tf.keras.Sequential([
         tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length),
         tf.keras.layers.SpatialDropout1D(0.2),
-        tf.keras.layers.Bidirectional(tf.keras.layers.LSTM (64, return_sequences=True)),
-        tf.keras.layers.Dropout (0.2),
+        tf.keras.layers.Bidirectional(tf.keras.layers.LSTM (32, return_sequences=True)),
         tf.keras.layers.Bidirectional(tf.keras.layers.LSTM (32)),
-        tf.keras.layers.Dropout (0.2),
         tf.keras.layers.Dense (32, activation='relu'),
-        tf.keras.layers.Dropout (0.2),
         tf.keras.layers.Dense (5, activation='sigmoid')
         ])
     return model
@@ -36,14 +48,27 @@ def simple_rnn_glove(vocabulary_size, embedding_dim, max_length, embedding_matri
     tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length = max_length, weights=[embedding_matrix], trainable=False),
     #weights=[embedding_matrix], trainable=False
     tf.keras.layers.Flatten(),
-    #tf.keras.layers.GlobalAveragePooling1D(),
-    #tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64,return_sequences=False)),
-    tf.keras.layers.Dense(128, activation="relu"),
-    tf.keras.layers.Dropout(0.4),
-    tf.keras.layers.Dense(32, activation="relu"),
-    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(64, activation="relu"),
     tf.keras.layers.Dense(5, activation ='sigmoid')
     ])
+    return model
+
+def unidirectional_LSTM(vocabulary_size, embedding_dim, max_length, embedding_matrix):
+    model = tf.keras.Sequential([
+        tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length, weights=[embedding_matrix], trainable=False),
+        tf.keras.layers.LSTM (64, return_sequences=False),
+        tf.keras.layers.Dense(64, activation="relu"),
+        tf.keras.layers.Dense(5, activation='sigmoid')
+        ])
+    return model
+
+def unidirectional_LSTM(vocabulary_size, embedding_dim, max_length, embedding_matrix):
+    model = tf.keras.Sequential([
+        tf.keras.layers.Embedding(vocabulary_size, embedding_dim, input_length=max_length, weights=[embedding_matrix], trainable=False),
+        tf.keras.layers.GRU (64, return_sequences=False),
+        tf.keras.layers.Dense(64, activation="relu"),
+        tf.keras.layers.Dense(5, activation='sigmoid')
+        ])
     return model
 
 def bi_directional_rnn_lstm_glove(vocabulary_size, embedding_dim, max_length, embedding_matrix):
@@ -51,12 +76,9 @@ def bi_directional_rnn_lstm_glove(vocabulary_size, embedding_dim, max_length, em
     model = tf.keras.Sequential ([
     tf.keras.layers.Embedding (vocabulary_size, embedding_dim, input_length=max_length, weights=[embedding_matrix], trainable=False),
     tf.keras.layers.SpatialDropout1D(0.2),
-    tf.keras.layers.Bidirectional(tf.keras.layers.LSTM (64, return_sequences=True)),
-    tf.keras.layers.Dropout (0.2),
+    tf.keras.layers.Bidirectional(tf.keras.layers.LSTM (32, return_sequences=True)),
     tf.keras.layers.Bidirectional(tf.keras.layers.LSTM (32)),
-    tf.keras.layers.Dropout (0.2),
     tf.keras.layers.Dense (32, activation='relu'),
-    tf.keras.layers.Dropout (0.2),
     tf.keras.layers.Dense (5, activation='sigmoid')
     ])
     return model
